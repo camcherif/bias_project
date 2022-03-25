@@ -7,12 +7,12 @@ def yahoo_autosugg(feature):
   #so basically this is the url I found to get yahoo autosuggestion for women
   #there's no api available and this is the only feasible solution I found lmao
   #we just need to replace women in the url by the feature we're actually looking for and it works great
-  url = "https://ca.search.yahoo.com/sugg/gossip/gossip-ca-ura/?pq=women%20are&command=women%20are&t_stmp=1648056743&callback=YAHOO.SA.apps%5B0%5D.cb.sacb0&l=1&bm=3&output=sd1&nresults=10&geoid=23897142&.crumb=zDg1NmBdWJ0&f=1&appid=ca.search.yahoo.com&bck=9kb8gcdh39es9%26b%3D3%26s%3D1m&csrcpvid=InOFpTEwLjGaLRBjYjS7iQLiNzQuNQAAAAD5R1sM&vtestid=&mtestid=24576%3DD1114&spaceId=2114721002"
-  #replace with the feature input for the function
-  url = re.sub('women', feature, url)
+  url = "https://ca.search.yahoo.com/sugg/gossip/gossip-ca-ura/?pq="+feature+"%20are&command="+feature+"%20are&t_stmp=1648056743&callback=YAHOO.SA.apps%5B0%5D.cb.sacb0&l=1&bm=3&output=sd1&nresults=10&geoid=23897142&.crumb=zDg1NmBdWJ0&f=1&appid=ca.search.yahoo.com&bck=9kb8gcdh39es9%26b%3D3%26s%3D1m&csrcpvid=InOFpTEwLjGaLRBjYjS7iQLiNzQuNQAAAAD5R1sM&vtestid=&mtestid=24576%3DD1114&spaceId=2114721002"
 
   r = requests.get(url)
-  #should add a condition that checks if response is accepted, aka r is 200
+  
+  if r==200:
+        return []
 
   #looks for the autosuggestions 
   att = att = re.findall(r'(?<="(k)":)"((.*?))"',r.text)
