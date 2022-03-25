@@ -23,9 +23,9 @@ country = pycountry.countries.get(name=country).alpha_2
 pytrend = TrendReq(hl="en-US", tz=300)
 pytrend.build_payload(kw_list=[var], geo=country)
 
-#suggestions and data presentation
+#suggestions and data presentation of top and rising queries
 suggestions = pytrend.related_queries().get(var)
-top = suggestions.get('top')
-rising = suggestions.get('rising')
+top = suggestions.get('top').drop(0)
+rising = suggestions.get('rising').drop(0)
 print(top.head())
 print(rising.head())
