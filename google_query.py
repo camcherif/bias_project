@@ -1,7 +1,7 @@
 #refs: https://github.com/GeneralMills/pytrends#related-queries and https://towardsdatascience.com/google-trends-api-for-python-a84bc25db88f
 #   and https://pypi.org/project/pycountry/
 #
-#______________
+#_______________
 
 import subprocess, sys, importlib
 
