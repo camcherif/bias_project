@@ -36,3 +36,4 @@ rising['query'] = rising['query'].str.title()
 print(suggestions.head())
 print(top.head())
 print(rising.head())
+result = [top['query'], rising['query']]
