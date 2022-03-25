@@ -11,7 +11,7 @@ def yahoo_autosugg(feature):
 
   r = requests.get(url)
   
-  if r==200:
+  if r>300:
         return []
 
   #looks for the autosuggestions 
