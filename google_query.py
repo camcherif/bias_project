@@ -24,8 +24,11 @@ pytrend = TrendReq(hl="en-US", tz=300)
 pytrend.build_payload(kw_list=[var], geo=country)
 
 #suggestions and data presentation of top and rising queries
-suggestions = pytrend.related_queries().get(var)
-top = suggestions.get('top').drop(0)
-rising = suggestions.get('rising').drop(0)
+related = pytrend.related_queries().get(var)
+#dropping unnecessary column 'mid'
+suggestions = pd.DataFrame(pytrend.suggestions(var)).drop(columns='mid')
+top = related.get('top').drop(0)
+rising = related.get('rising').drop(0)
+print(suggestions.head())
 print(top.head())
 print(rising.head())
