@@ -1,14 +1,31 @@
-import requests, json
+#refs: https://github.com/GeneralMills/pytrends#related-queries and https://towardsdatascience.com/google-trends-api-for-python-a84bc25db88f
+#   and https://pypi.org/project/pycountry/
+#
+#______________
 
-var = input("Enter your query: ")
-var_space = var.replace(' ', '+')
-countries = ["FR","GB","US","CA","ES","ZA","IN", "AR"]; 
-URL = "http://suggestqueries.google.com/complete/search?client=firefox&q=" + var_space + "&hl=" + countries[0] 
-headers = {'User-agent':'Mozilla/5.0'}
-response = requests.get(URL, headers=headers)
-result = json.loads(response.content.decode('utf-8'))[1][1:]
-i=0
-for query in result:
-    result[i] = query.replace(var + ' ', '')
-    i+=1
-print(result)
+import subprocess, sys, importlib
+
+#checking if modules are installed, else install
+packages = ["pandas",  "pycountry", "pytrends"]
+for package in packages:
+    if importlib.util.find_spec(package) is None:
+        subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+
+import pandas as pd, pycountry
+from pytrends.request import TrendReq
+
+#getting input
+var = input("Enter your query:")
+country = input("Enter name of country of choice:")
+country = pycountry.countries.get(name=country).alpha_2
+
+#building trend request
+pytrend = TrendReq(hl="en-US", tz=300)
+pytrend.build_payload(kw_list=[var], geo=country)
+
+#suggestions and data presentation
+suggestions = pytrend.related_queries().get(var)
+top = suggestions.get('top')
+rising = suggestions.get('rising')
+print(top.head())
+print(rising.head())
