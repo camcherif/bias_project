@@ -1,15 +1,17 @@
 import nltk
-#nltk.download()
+nltk.download() 
 from nltk.sentiment import SentimentIntensityAnalyzer
 from nltk.stem import SnowballStemmer
 from statistics import mean
 
+#senti perform sentiment analysis with nltk on the list of autosuggestions
 def senti(autosugg_list):
     scores = []
     sia = SentimentIntensityAnalyzer()
     stemmer = SnowballStemmer("english")
     for s in autosugg_list:
-        scores.append(sia.polarity_scores(stemmer.stem(s))['compound'])
-    return mean(scores)
+        #compound < 0 when the sentiment is negative and >0 when positive
+        scores.append(sia.polarity_scores(stemmer.stem(s))['compound']) 
+    return mean(scores) #mean sentiment for the autosuggestion list
 
-print(senti(['idiot', 'not small men', 'making headlines for the wrong reasons']))
+
