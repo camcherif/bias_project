@@ -14,26 +14,24 @@ for package in packages:
 import pandas as pd, pycountry
 from pytrends.request import TrendReq
 
-#getting input
-var = input("Enter your query:")
-country = input("Enter name of country of choice:")
-country = pycountry.countries.get(name=country).alpha_2
+#getting input: var is query, country is self-explanatory
+def google_q(var, country):
+    #getting 2-letter code of country
+    country = pycountry.countries.get(name=country).alpha_2
 
-#building trend request
-pytrend = TrendReq(hl="en-US", tz=300)
-pytrend.build_payload(kw_list=[var], geo=country)
+    #building trend request
+    pytrend = TrendReq(hl="en-US", tz=300)
+    pytrend.build_payload(kw_list=[var], geo=country)
 
-#suggestions and data presentation of top and rising queries
-related = pytrend.related_queries().get(var)
-#dropping unnecessary column 'mid'
-suggestions = pd.DataFrame(pytrend.suggestions(var)).drop(columns='mid')
-top = related.get('top').drop(0)
-rising = related.get('rising').drop(0)
-#capitalizing titles
-suggestions['title'] = suggestions['title'].str.title()
-top['query'] = top['query'].str.title()
-rising['query'] = rising['query'].str.title()
-print(suggestions.head())
-print(top.head())
-print(rising.head())
-result = [top['query'], rising['query']]
+    #suggestions and data presentation of top and rising queries
+    related = pytrend.related_queries().get(var)
+    #dropping unnecessary columns 'mid' and 'value
+    #commenting out suggestions, not using them anymore
+    #suggestions = pd.DataFrame(pytrend.suggestions(var)).drop(columns='mid')
+    top = related.get('top').drop(columns='value')
+    rising = related.get('rising').drop(columns='value')
+    #capitalizing titles
+    top['query'] = top['query'].str.title()
+    rising['query'] = rising['query'].str.title()
+    result = [top['query'], rising['query']]
+    return result
