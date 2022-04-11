@@ -13,5 +13,3 @@ def senti(autosugg_list):
         #compound < 0 when the sentiment is negative and >0 when positive
         scores.append(sia.polarity_scores(stemmer.stem(s))['compound']) 
     return mean(scores) #mean sentiment for the autosuggestion list
-
-
