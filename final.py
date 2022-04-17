@@ -26,8 +26,6 @@ def main():
         
         
 
-
-    #what's left: format the lists generated so it fits the input format of the heatmap function
     #call heatmap function and display the figure 
 
 
