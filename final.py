@@ -2,7 +2,6 @@ from yahoo_bias import yahoo_autosugg
 from google_query import google_q
 from sentiment import senti 
 import pandas as pd, pycountry
-import time
 from heat_map import heat_map
 
 def main():
