@@ -1,11 +1,13 @@
 import nltk
-nltk.download() 
+#nltk.download() 
 from nltk.sentiment import SentimentIntensityAnalyzer
 from nltk.stem import SnowballStemmer
 from statistics import mean
 
 #senti perform sentiment analysis with nltk on the list of autosuggestions
 def senti(autosugg_list):
+    if not autosugg_list:
+        return 0
     scores = []
     sia = SentimentIntensityAnalyzer()
     stemmer = SnowballStemmer("english")
