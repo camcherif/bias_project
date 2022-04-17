@@ -23,6 +23,7 @@ def heat_map(country, var, google_score, yahoo_score):
         world_yahoo = pd.merge(world_yahoo, yahoo_score, on='alpha_2')
 
         var = var.title()
+        colour_scheme = plt.cm.get_cmap('jet').reversed()
 
         fig, ax = plt.subplots(figsize = (10,4), facecolor = plt.cm.Blues(.2))
         fig.suptitle('Google Bias by Country for ' + var,
@@ -30,7 +31,7 @@ def heat_map(country, var, google_score, yahoo_score):
                 fontweight = 'bold')
         ax.set_facecolor(plt.cm.Blues(.2))
         world_google.plot(column = 'google_idx',
-                cmap = 'jet',
+                cmap = colour_scheme,
                 ax = ax,
                 legend = True,
                 vmin = min([min(world_google['google_idx']), min(world_yahoo['yahoo_idx'])]),
@@ -45,7 +46,7 @@ def heat_map(country, var, google_score, yahoo_score):
                 fontweight = 'bold')
         ax.set_facecolor(plt.cm.Blues(.2))
         world_yahoo.plot(column = 'yahoo_idx',
-                cmap = 'jet',
+                cmap = colour_scheme,
                 ax = ax,
                 legend = True,
                 vmin = min([min(world_google['google_idx']), min(world_yahoo['yahoo_idx'])]),
