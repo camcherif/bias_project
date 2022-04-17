@@ -17,7 +17,6 @@ from pytrends.request import TrendReq
 #getting input: var is query, country is self-explanatory
 def google_q(var, country):
     #getting 2-letter code of country
-    country = pycountry.countries.get(name=country).alpha_2
 
     #building trend request
     pytrend = TrendReq(hl="en-US", tz=300)
