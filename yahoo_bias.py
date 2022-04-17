@@ -27,10 +27,3 @@ def yahoo_autosugg(feature, loca):
         output.append(s) #append the result to the list
 
   return output
-
-var = input("Enter your query: ")
-country = input("Enter name of country of choice:")
-country = pycountry.countries.get(name=country).alpha_2
-print((str(country)).lower())
-print("autosuggestion results from "+country)
-print(yahoo_autosugg(var, country))
