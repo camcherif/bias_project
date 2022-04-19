@@ -28,8 +28,12 @@ def main():
         #getting the autosuggestions from google and yahoo 
         #getting sentiment analysis for google and yahoo autosugestion
         #append to the list for respective search engines
-        senti_avg_google.append([senti((google_q(var, r)[0]).tolist()), r])
-        senti_avg_yahoo.append([(senti(yahoo_autosugg(var, r))), r])
+        google_query = (google_q(var, r)[0]).tolist()
+        #evaluating with senti if query did not return empty array:
+        if google_query:
+            senti_avg_google.append([senti((google_q(var, r)[0]).tolist()), r])
+        if yahoo_autosugg(var, r):
+            senti_avg_yahoo.append([(senti(yahoo_autosugg(var, r))), r])
 
     heat_map(country, var, senti_avg_google, senti_avg_yahoo)
 
