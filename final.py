@@ -6,7 +6,7 @@ from heat_map import heat_map
 
 def main():
     var = input("Enter your query: ")
-    country = ["Canada","United States", "United Kingdom", "France", "Germany", "Australia", "New Zealand", "Singapore", "Japan", "South Africa", "Philippines", "India"]
+    country = ["Canada","United States", "Brazil", "United Kingdom", "France", "Germany", "Australia", "New Zealand", "Singapore", "Japan", "South Africa", "Philippines", "India"]
     senti_avg_google = []
     senti_avg_yahoo = []
     pyc = []
