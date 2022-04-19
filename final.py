@@ -6,7 +6,15 @@ from heat_map import heat_map
 
 def main():
     var = input("Enter your query: ")
-    country = ["Canada","United States", "Brazil", "United Kingdom", "France", "Germany", "Australia", "New Zealand", "Singapore", "Japan", "South Africa", "Philippines", "India"]
+    country = ["Canada", "United States", "Mexico", "Peru", "Paraguay", "Colombia", "Chile", 
+               "Argentina", "Brazil", "Morocco", "Algeria", "Tunisia", "Libya", "Egypt", 
+               "Mauritania", "Nigeria", "Cameroon", "Sudan", "Senegal", "Burkina Faso", "Angola", 
+               "Botswana", "Kenya", "Ethiopia", "Somalia", "Zambia", "Zimbabwe", "South Africa", 
+               "Madagascar", "Portugal", "Spain", "United Kingdom", "France", "Germany", 
+               "Italy", "Switzerland", "Belgium", "Denmark", "Norway", "Netherlands", "Sweden", 
+               "Latvia", "Lithuania", "Slovenia", "Romania", "Poland", "Ukraine", "Turkey", 
+               "United Arab Emirates", "India", "Sri Lanka", "Singapore", "Thailand", "China", 
+               "Japan", "Philippines", "Australia", "New Zealand"]
     senti_avg_google = []
     senti_avg_yahoo = []
     pyc = []
@@ -26,10 +34,6 @@ def main():
     heat_map(country, var, senti_avg_google, senti_avg_yahoo)
 
     #call heatmap function and display the figure 
-
-
-
-    
 
 
 if __name__ == "__main__":
