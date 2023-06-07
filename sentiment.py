@@ -1,5 +1,5 @@
 import nltk
-nltk.download() 
+#nltk.download() 
 from nltk.sentiment import SentimentIntensityAnalyzer
 from nltk.stem import SnowballStemmer
 from statistics import mean

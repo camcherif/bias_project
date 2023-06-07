@@ -11,24 +11,29 @@ for package in packages:
     if importlib.util.find_spec(package) is None:
         subprocess.check_call([sys.executable, "-m", "pip", "install", package])
 
-import pandas as pd, pycountry
+import pandas as pd
 from pytrends.request import TrendReq
 
 #getting input: var is query, country is self-explanatory
 def google_q(var, country):
-    #getting 2-letter code of country
-
     #building trend request
     pytrend = TrendReq(hl="en-US", tz=300)
     pytrend.build_payload(kw_list=[var], geo=country)
 
     #suggestions and data presentation of top and rising queries
     related = pytrend.related_queries().get(var)
-    #dropping unnecessary columns 'mid' and 'value
-    #commenting out suggestions, not using them anymore
-    #suggestions = pd.DataFrame(pytrend.suggestions(var)).drop(columns='mid')
-    top = related.get('top').drop(columns='value')
-    rising = related.get('rising').drop(columns='value')
+    #creating empty dataframe for exception
+    empty_series = pd.Series([])
+    #dropping unnecessary columns 'mid' and 'value'
+    #and checking if queries get results for autosuggestions
+    try: 
+        top = related.get('top').drop(columns='value')
+    except:
+        return [empty_series, empty_series]
+    try:
+        rising = related.get('rising').drop(columns='value')
+    except:
+        return [empty_series, empty_series]
     #capitalizing titles
     top['query'] = top['query'].str.title()
     rising['query'] = rising['query'].str.title()
