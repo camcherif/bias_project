@@ -1,1 +1,2 @@
-# bias_project
+The final project for IFT6261 — Traitement de connaissances aims to provide clear evidence of misinformation and/or slanderous information traces in autocomplete suggestion query list from two search engines, Google and Yahoo. We will generate autosuggestion lists for different search engine (Yahoo and Google) based on different locations and queries
+tied to different subjects (race, gender, political) in order to assess the valence of these popular results. Thus, we will analyse the sentiment analysis distribution of suggested queries of different topics over different localization in order to provide understanding of the challenges of autocomplete suggestion.
